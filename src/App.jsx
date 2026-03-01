@@ -1,12 +1,27 @@
 // Imports
-
+import "./App.css"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import { useState } from 'react';
 
 
 // App Component
 function App() {
+  // search functionality
+
+
+
+
+
   return (
     <>
-      <h1>This is the start of my REACT SPA :D</h1>
+      <Router>
+        <div className="app">
+          <Header />
+          <Routes>
+          </Routes>
+        </div>
+      </Router>
     </>
   )
 }
