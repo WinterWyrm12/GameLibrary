@@ -33,7 +33,7 @@ function GameCard({game}) {
     return (
         <>
             <div className="game-card">
-                <div className="game-title">
+                <div className="card-top">
                     <h3>{game.title}</h3>
                     <button className={
                         `favorite-button ${isFavorite ? "favorited" : ""}`} onClick={toggleFavorite}>

@@ -1,12 +1,17 @@
 /* Game Library Design */
 body {
     background-color: #0F000F;
+    color:#FF9E00;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Header */
 .header {
     background-color: #5A189A;
-    width: 100%;    height: 8rem;
+    width: 100%;    
+    height: 8rem;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -96,4 +101,62 @@ body {
 
 .search-btn:hover {
     color: #FFDE00;
+}
+
+/* Error */
+.error-container {
+    width: 100%;
+    text-align: center;
+    margin-top: 5rem;
+}
+
+/* GameCard */
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    align-items: center;
+    margin: 1rem;
+}
+
+.card-top button {
+    text-decoration: none;
+    background-color:#5A189A; 
+    color:#FF9E00;
+    font-size: 1.5rem;
+    border-radius: 0rem .5rem 0rem 0rem;
+    height: 3rem;
+}
+
+.game-card {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: .5rem;
+    background-color: #5A189A;
+}
+
+.game-details, .game-info {
+    padding: .125rem .5rem;
+}
+
+.game-card img {
+    width: 100%;
+    object-fit: cover;;
+}
+
+.game-details {
+    font-weight: bold;
+    background-color: #3C096C;
+
+}
+
+/* Grid */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    justify-items: center;
+    padding: 1rem;
 }
