@@ -5,15 +5,15 @@ import Header from './components/Header';
 import { useState } from 'react';
 import { searchGames } from "./services/gameService";
 import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 
 
 // App Component
 function App() {
   // search functionality
-  const [searchResults, setSearchResults] = useState([]);
-  const handleSearch = async (query) => {
-    const results = await searchGames(query);
-    setSearchResults(results);
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleSearch = (query) => {
+    setSearchQuery(query);
   };
 
   return (
@@ -22,7 +22,8 @@ function App() {
         <div className="app">
           <Header onSearch={handleSearch}/>
           <Routes>
-            <Route path="/" element={<Home searchResults={searchResults} />} />
+            <Route path="/" element={<Home searchQuery={searchQuery} />} />
+            <Route path="/favorites" element={<Favorites searchQuery={searchQuery} />} />
           </Routes>
         </div>
       </Router>

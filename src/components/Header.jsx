@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 
 // Function
-function Header() {
+function Header({onSearch}) {
     // search functionality
     const [searchQuery, setSearchQuery] = useState('');
     const handleSearch = () => {
@@ -27,10 +27,10 @@ function Header() {
                 <div className="header-nav">
                     <Link to="/" className="app-title">GameLibrary</Link>
                     <nav className="navbar">
-                        <Link to="" className="nav-link">Browse</Link>
-                        <Link to="" className="nav-link">Play-Later</Link>
-                        <Link to="" className="nav-link">Favorites</Link>
-                        <Link to="" className="nav-link">Completed</Link>
+                        <Link to="/" className="nav-link">Browse</Link>
+                        <Link to="/play-later" className="nav-link">Play-Later</Link>
+                        <Link to="/favorites" className="nav-link">Favorites</Link>
+                        <Link to="/completed" className="nav-link">Completed</Link>
                     </nav>
                 </div>
                 <div className="header-search">
@@ -39,7 +39,11 @@ function Header() {
                         placeholder="🔍 Search the Library..."
                         className="search-input"
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            setSearchQuery(value);
+                            onSearch(value);
+                        }}
                         onKeyDown={handleKeyDown}
                     />
                     <button className="search-btn" onClick={handleSearch}>▶</button>

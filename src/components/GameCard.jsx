@@ -6,21 +6,22 @@ function GameCard({game}) {
     // favorites
     const [isFavorite, setIsFavorite] = useState(false);
     useEffect(() => {
-        const favorites = JSON.parse(localStorage.getItem('favoriteGame')) || [];
-        const isFavoiteGame = favorites.some(fav => fav.id === game.id);
-    setIsFavorite(isFavoiteGame);
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        const isGameFavorite = favorites.some(fav => fav.id === game.id);
+        setIsFavorite(isGameFavorite);
     }, [game.id]);
+
     const toggleFavorite = () => {
-        const favorites = JSON.parse(localStorage.getItem('favoriteGame')) || [];
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
         if (isFavorite) {
             const updatedFavorites = favorites.filter(fav => fav.id !== game.id);
-            localStorage.setItem('favoriteMovie', JSON.stringify(updatedFavorites));
+            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
             setIsFavorite(false);
         } else {
             favorites.push(game);
-            localStorage.setItem('favoriteGame', JSON.stringify(favorites));
+            localStorage.setItem('favorites', JSON.stringify(favorites));
             setIsFavorite(true);
-        }
+        };
     };
 
     // play-later
@@ -35,10 +36,9 @@ function GameCard({game}) {
             <div className="game-card">
                 <div className="card-top">
                     <h3>{game.title}</h3>
-                    <button className={
-                        `favorite-button ${isFavorite ? "favorited" : ""}`} onClick={toggleFavorite}>
-                            {isFavorite ? "★" : "☆"}
-                        </button>
+                    <button className={`favorite-button ${isFavorite ?  'favorited' : ''}`} onClick={toggleFavorite}>
+                        {isFavorite ? "★" : "☆"}
+                    </button>
                 </div>
                 <div className="game-poster">
                     <img 

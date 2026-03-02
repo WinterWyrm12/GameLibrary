@@ -3,19 +3,20 @@ import GameGrid from "../components/GameGrid";
 import { useState, useEffect } from "react";
 import { getFreeGames } from "../services/gameService";
 import ErrorScreen from "../components/ErrorScreen";
+import LoadingScreen from "../components/LoadingScreen";
 
 
 
 // Function
-function Home({searchResults}) {
+function Home({searchQuery}) {
     // main content + error and loading
     const [games, setGames] = useState([]);
     const [error, setError] = useState(null);
-    // loading states go here
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchGames = async () => {
             try{
-                // loading
+                setLoading(true);
                 setError(null);
                 const gameData = await getFreeGames();
                 setGames(gameData);
@@ -23,14 +24,20 @@ function Home({searchResults}) {
                 setError("Failed to load games. Please try again later.");
                 setGames([]);
             } finally {
-                //set loading state to false
+                setLoading(false)
             }
         };
 
         fetchGames();
     }, []);
 
-    // loading
+    if (loading) {
+        return (
+            <main className="main-content">
+                <LoadingScreen />
+            </main>
+        );
+    };
 
     if (error) {
         return (
@@ -41,13 +48,16 @@ function Home({searchResults}) {
     };
 
     // display search results or free games
-    const displayGames = searchResults.length > 0 ? searchResults : games;
+    const query = typeof searchQuery === "string" ? searchQuery.toLowerCase() : "";
+    const displayGames = query.length > 0 ? games.filter(game => game.title.toLowerCase().includes(query)) : games;
+
+<GameGrid games={displayGames} />
 
     return (
         <>
             <main className="main-content">
                 <div className="content-header">
-                    <h2>{searchResults.length > 0 ? "Search Results" : "Free Games"}</h2>
+                    <h2>{searchQuery.length > 0 ? "Search Results" : "Free Games"}</h2>
                     <p>Discover and keep track of all the free games!</p>
                 </div>
                 <GameGrid games={displayGames} />
