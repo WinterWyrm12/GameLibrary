@@ -39,14 +39,10 @@ function Header({onSearch}) {
                         placeholder="🔍 Search the Library..."
                         className="search-input"
                         value={searchQuery}
-                        onChange={(e) => {
-                            const value = e.target.value;
-                            setSearchQuery(value);
-                            onSearch(value);
-                        }}
-                        onKeyDown={handleKeyDown}
+                        onChange={(e) => {setSearchQuery(e.target.value);}}
+                        onKeyDown={(e) => { if (e.key === "Enter") onSearch(searchQuery);}}
                     />
-                    <button className="search-btn" onClick={handleSearch}>▶</button>
+                    <button className="search-btn" onClick={() => onSearch(searchQuery)}>▶</button>
                 </div>
             </header>
         </>

@@ -60,7 +60,10 @@ function Home({searchQuery}) {
                     <h2>{searchQuery.length > 0 ? "Search Results" : "Free Games"}</h2>
                     <p>Discover and keep track of all the free games!</p>
                 </div>
-                <GameGrid games={displayGames} />
+                {displayGames.length > 0 ? (<GameGrid games={displayGames} />
+                ) : (
+                <p>No games found{searchQuery ? ` for "${searchQuery}"` : ""}.</p>
+                )}
             </main>
         </>
     );

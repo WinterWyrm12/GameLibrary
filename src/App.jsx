@@ -6,15 +6,33 @@ import { useState } from 'react';
 import { searchGames } from "./services/gameService";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
+import PlayLater from "./pages/Play-Later";
+import Completed from "./pages/Completed";
 
 
 // App Component
 function App() {
   // search functionality
   const [searchQuery, setSearchQuery] = useState("");
-  const handleSearch = (query) => {
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const handleSearch = async (query) => {
     setSearchQuery(query);
-  };
+    if (query.trim() === "") {
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const results = await searchGames(query);
+      setSearchResults(results);
+    } catch (err) {
+      console.error("Search Error:", err);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <>
@@ -24,6 +42,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home searchQuery={searchQuery} />} />
             <Route path="/favorites" element={<Favorites searchQuery={searchQuery} />} />
+            <Route path="/play-later" element={<PlayLater searchQuery={searchQuery} />} />
+            <Route path="/completed" element={<Completed searchQuery={searchQuery} />} />
           </Routes>
         </div>
       </Router>
