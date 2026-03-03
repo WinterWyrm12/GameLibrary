@@ -13,5 +13,11 @@ export default defineConfig({
         reqrite: (path) => path.replace(/^\/api/, ''),
       }
     }
+  },
+
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
   }
 })
