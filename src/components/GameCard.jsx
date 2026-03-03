@@ -1,8 +1,33 @@
 // Imports
 import { useState, useEffect } from "react";
+import PlayLater from "../pages/Play-Later";
+import { usePlayLater } from "../contexts/PlayLaterContext";
+import { useCompleted } from "../contexts/CompletedContext";
 
 
-function GameCard({game}) {
+const GameCard = ({game}) => {
+    // play-later
+    const {addToPlayLater, removeFromPlayLater, isInPlayLater} = usePlayLater();
+    const inPlayLater = isInPlayLater(game.id);
+    const handlePlayList = () => {
+        if (inPlayLater) {
+            removeFromPlayLater(game.id);
+        } else {
+            addToPlayLater(game);
+        };
+    };
+
+    // completed
+    const {addToCompleted, removeFromCompleted, isInCompleted} = useCompleted();
+    const inCompleted = isInCompleted(game.id);
+    const handleCompleted = () => {
+        if (inCompleted) {
+            removeFromCompleted(game.id);
+        } else {
+            addToCompleted(game);
+        };
+    };
+
     // favorites
     const [isFavorite, setIsFavorite] = useState(false);
     useEffect(() => {
@@ -23,13 +48,6 @@ function GameCard({game}) {
             setIsFavorite(true);
         };
     };
-
-    // play-later
-
-
-
-    // completed
-
 
     return (
         <>
@@ -54,6 +72,14 @@ function GameCard({game}) {
                         <p>{game.short_description}</p>
                         <p>{game.publisher}</p>
                     </div>
+                </div>
+                <div className="card-bottom">
+                    <button className={`play-later-btn  ${inPlayLater ? 'added' : ''}`} onClick={handlePlayList}>
+                        {inPlayLater ? "✓ Play-Later" : "+ Play-Later"}
+                    </button>
+                    <button className={`completed-btn  ${inCompleted ? 'added' : ''}`} onClick={handleCompleted}>
+                        {inCompleted ? "✓ Completed" : "+ Complete"}
+                    </button>
                 </div>
             </div>
         </>

@@ -3,12 +3,12 @@ import { createContext, useState, useContext, useEffect } from "react";
 
 
 // game context - for PlayLater
-const GameContext = createContext();
+const PlayLaterContext = createContext();
 
 export function usePlayLater() {
-    const context = useContext(GameContext);
+    const context = useContext(PlayLaterContext);
     if (!context) {
-        throw new Error('usePlayList must be used within PlayLaterProvider');
+        throw new Error('usePlayLater must be used within PlayLaterProvider');
     }
     return context;
 };
@@ -46,8 +46,8 @@ export function PlayLaterProvider({children}) {
     };
 
     return (
-        <GameContext.Provider value={value}>
+        <PlayLaterContext.Provider value={value}>
             {children}
-        </GameContext.Provider>
+        </PlayLaterContext.Provider>
     );
 };

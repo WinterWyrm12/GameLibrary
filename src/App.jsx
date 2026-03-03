@@ -8,7 +8,8 @@ import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import PlayLater from "./pages/Play-Later";
 import Completed from "./pages/Completed";
-import { PlayLaterProvider } from "./contexts/GameContext";
+import { PlayLaterProvider } from "./contexts/PlayLaterContext";
+import { CompletedProvider } from "./contexts/CompletedContext";
 
 
 // App Component
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <PlayLaterProvider>
+    <CompletedProvider>
       <Router>
         <div className="app">
           <Header onSearch={handleSearch}/>
@@ -48,6 +50,7 @@ function App() {
           </Routes>
         </div>
       </Router>
+    </CompletedProvider>
     </PlayLaterProvider>
   )
 }

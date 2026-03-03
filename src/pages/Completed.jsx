@@ -3,50 +3,18 @@ import GameGrid from "../components/GameGrid";
 import { useState, useEffect } from "react";
 import ErrorScreen from "../components/ErrorScreen";
 import LoadingScreen from "../components/LoadingScreen";
+import { useCompleted } from "../contexts/CompletedContext";
 
 // Function
 function Completed({searchQuery}) {
-    // completed + error and loading
-    const [completed, setCompleted] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
-    // load completed
-    useEffect(() => {
-        try {
-            setLoading(true);
-            setError(null);
-            const loadCompleted = () => {
-                const storedCompleted = JSON.parse(localStorage.getItem("completed")) || [];
-            setCompleted(storedCompleted);
-            };
-            loadCompleted();
-        } catch (err) {
-            setError("Failed to load completed.");
-            setCompleted([]);
-        } finally {
-            setLoading(false);
-        }
-    }, []);
-
-    if (loading) {
-        return (
-            <main className="main-content">
-                <LoadingScreen />
-            </main>
-        );
-    };
-
-    if (error) {
-        return (
-            <main className="main-content">
-                <ErrorScreen message={error} />
-            </main>
-        );
-    };
+    const {completed} = useCompleted();
 
     // display search results or free games
     const query = typeof searchQuery === "string" ? searchQuery.toLowerCase() : "";
     const displayCompleted = query.length > 0 ? completed.filter(game => game.title.toLowerCase().includes(query)) : completed;
+
+    console.log(displayCompleted);
+
 
     return (
         <>
