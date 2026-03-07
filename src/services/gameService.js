@@ -3,7 +3,7 @@ const API_URL = import.meta.env.VITE_GAME_API_URL;
 // free games
 export async function getFreeGames() {
     const response = await fetch(
-        "/api/games"
+        `${API_URL}/games`
     );
 
     if (!response.ok) {
@@ -16,7 +16,7 @@ export async function getFreeGames() {
 // search query
 export async function searchGames(query) {
     const response = await fetch(
-        "/api/games"
+        `${API_URL}/games`
     );
     
     if (!response.ok) {

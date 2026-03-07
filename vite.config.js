@@ -10,7 +10,7 @@ export default defineConfig({
       '/api': {
         target: 'https://www.freetogame.com',
         changeOrigin: true,
-        reqrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       }
     }
   },
