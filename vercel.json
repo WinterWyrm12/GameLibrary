@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://www.freetogame.com/api"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        { "key": "x-vercel-enable-rewrite-caching", "value": "1" },
+        {
+          "key": "CDN-Cache-Control",
+          "value": "max-age=300"
+        }
+      ]
+    }
+  ]
+}
