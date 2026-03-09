@@ -1,6 +1,10 @@
 // Imports
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useCompleted } from '../contexts/CompletedContext';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
+
 
 
 // Function
@@ -17,12 +21,47 @@ function Header({onSearch}) {
             handleSearch();
         }
     };
+    const {savedCompleted} = useCompleted()
+    const {user, isAuthenticated, logout, hasRole} = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logout();
+        navigate(from, {replace: true});
+    };
 
     return (
         <>
             <header className="header">
                 <div className="header-top">
-                    <Link to="" className="login-link">Login</Link>
+                    {/* Authemtication */}
+                    {isAuthenticated && (
+                        <Link 
+                        to="/saved" 
+                        className={`nav-link ${location.pathname === '/completed' ? 'active' : ''}`}
+                        >
+                        </Link>
+                        )} {hasRole('admin') && (
+                        <Link to="/completed" className="nav-link admin-link">⭐</Link>
+                    )}
+
+                    <div className="auth-section">
+                        {isAuthenticated ? (
+                            <div className="user-info">
+                                <span className="username">{user.username} </span>
+                                {user.role === 'admin' && 
+                                (<span className="admin-badge">Admin</span> )
+                                }
+                                <button onClick={handleLogout} className="logout-link">
+                                    Logout
+                                </button>
+                            </div>
+                        ) : (
+                            <Link to="/login" className="login-link">
+                                Login
+                            </Link>
+                        )}
+                    </div>
                 </div>
                 <div className="header-nav">
                     <Link to="/" className="app-title">GameLibrary</Link>

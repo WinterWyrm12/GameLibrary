@@ -1,7 +1,8 @@
 // Imports 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
+import "./Login.css";
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -22,12 +23,62 @@ function Login() {
         // mock authentication
         try {
             login(username, password, selectedRole);
-            navigate('/favorites');
         } catch (err) {
             setError("Login failed. Please try again.")
         };
         navigate(from, {replace: true});
     };
 
-    return
-}
+    return (
+        <>
+            <div className="login-container">
+                <h2>Login to GameLibrary</h2>
+                <p className="login-subtitle">Access your personalized GameLibrary</p>
+
+                {error && <div className="error-message">{error}</div>}
+        
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input 
+                            type="text"
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter your username"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input 
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="Enter your password "
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="role">Account Type</label>
+                        <select
+                            id="role"
+                            value={selectedRole}
+                            onChange={(e) => setSelectedRole(e.target.value)}
+                            placholder="Enter your password"
+                        >
+                            <option value="regular">Regular User</option>
+                            <option value="admin">Admin User</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" className="btn login-btn">Login</button>
+                </form>
+            </div>
+        </>
+    );
+};
+
+
+export default Login;

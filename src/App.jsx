@@ -11,7 +11,9 @@ import Completed from "./pages/Completed";
 import { PlayLaterProvider } from "./contexts/PlayLaterContext";
 import { CompletedProvider } from "./contexts/CompletedContext";
 import NotFound from "./components/NotFound";
-import { AuthProvider } from "./contexts/AuthConext";
+import { AuthProvider } from "./contexts/AuthContext";
+import Login from "./components/Login";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 // App Component
@@ -47,9 +49,10 @@ function App() {
               <Header onSearch={handleSearch}/>
               <Routes>
                 <Route path="/" element={<Home searchQuery={searchQuery} />} />
-                <Route path="/favorites" element={<Favorites searchQuery={searchQuery} />} />
-                <Route path="/play-later" element={<PlayLater searchQuery={searchQuery} />} />
-                <Route path="/completed" element={<Completed searchQuery={searchQuery} />} />
+                <Route path="/favorites" element={<ProtectedRoute><Favorites searchQuery={searchQuery} /> </ProtectedRoute>} />
+                <Route path="/play-later" element={ <ProtectedRoute><PlayLater searchQuery={searchQuery} /> </ProtectedRoute>} />
+                <Route path="/completed" element={<ProtectedRoute> <Completed searchQuery={searchQuery} /> </ProtectedRoute>} />
+                <Route path="/login" element={<Login />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </div>

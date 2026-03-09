@@ -12,10 +12,11 @@ export function useAuth() {
 }
 
 export function AuthProvider({children}) {
-    const [userEvent, setUser] = useState(null);
+    const [user, setUser] = useState(null);
     const isAuthenticated = user !== null;
+    
     const login = (username, password, role = "regular") => {
-        const mockToken = `mock_jwt_token_${Date.now}`;
+        const mockToken = `mock_jwt_token_${Date.now()}`;
         const userData = {
             username: username,
             role: role,

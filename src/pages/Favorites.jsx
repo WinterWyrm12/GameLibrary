@@ -3,6 +3,8 @@ import GameGrid from "../components/GameGrid";
 import { useState, useEffect } from "react";
 import ErrorScreen from "../components/ErrorScreen";
 import LoadingScreen from "../components/LoadingScreen";
+import { useAuth } from "../contexts/AuthContext";
+
 
 // Function
 function Favorites({searchQuery}) {
