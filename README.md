@@ -101,9 +101,9 @@ As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is block
 ### Screenshots
 
 - Home:
-![Home]("https://drive.google.com/file/d/1UCGk0tXl1wp_C5jwtLNt_hyXJtT7JxG8/view?usp=drive_link")
+![Home]("./images/Home.png")
 
 - Favorites:
-![Favorites]("https://drive.google.com/file/d/1KRZQSNdbauz_VNZo1FXQB6UctVDHe-OP/view?usp=drive_link")
+![Favorites]("./images/Favorites.png")
 - Login:
-![Login]("https://drive.google.com/file/d/1OidaTCQMHIDk0WQiprGan3XTj5E2N02F/view?usp=drive_link")
+![Login]("./images/Login.png")
