@@ -66,6 +66,14 @@ More information on this API or its functionality can be found at the following 
 
 ---
 
+## Authentication
+
+Using the login button you can enter any username and password.
+If you select admin you will get a star by youe username in the top right corner. Currently this is the only difference betwene Admin and Regular roles.
+You wont be able to view your saved games until you have logged in.
+
+---
+
 ## Deployment
 
 The live application can be viewed at the following link: https://game-library-po9ymxsa6-winterwyrm12s-projects.vercel.app/
@@ -87,6 +95,15 @@ As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is block
 
 ### Future Enhanement
 
-- Authorization / Authentication
 - CSS Design Improvements
+- Saved data on completed and play-later pages
 
+### Screenshots
+
+- Home:
+![Home]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
+
+- Favorites:
+![Favorites]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
+- Login:
+![Login]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
