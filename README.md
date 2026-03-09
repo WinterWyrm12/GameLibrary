@@ -101,9 +101,9 @@ As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is block
 ### Screenshots
 
 - Home:
-![Home]("./images/Home.png")
+![Home]("./Home.png")
 
 - Favorites:
-![Favorites]("./images/Favorites.png")
+![Favorites]("./Favorites.png")
 - Login:
-![Login]("./images/Login.png")
+![Login]("./Login.png")
