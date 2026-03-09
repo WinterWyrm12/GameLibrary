@@ -101,9 +101,9 @@ As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is block
 ### Screenshots
 
 - Home:
-![Home]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
+![Home]("https://drive.google.com/file/d/1UCGk0tXl1wp_C5jwtLNt_hyXJtT7JxG8/view?usp=drive_link")
 
 - Favorites:
-![Favorites]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
+![Favorites]("https://drive.google.com/file/d/1KRZQSNdbauz_VNZo1FXQB6UctVDHe-OP/view?usp=drive_link")
 - Login:
-![Login]("C:\College Things\Front-end Application Development\Week 7\Final Project\GameLibrary\images\Home.png")
+![Login]("https://drive.google.com/file/d/1OidaTCQMHIDk0WQiprGan3XTj5E2N02F/view?usp=drive_link")
