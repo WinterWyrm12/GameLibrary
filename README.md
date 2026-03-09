@@ -106,4 +106,4 @@ As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is block
 - Favorites:
 ![Favorites]("./Favorites.png")
 - Login:
-![Login]("./Login.png")
+![Login]("/Login.png")
