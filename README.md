@@ -91,7 +91,8 @@ The deployment platform used was Vercel.
 
 ### Errors
 
-As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is blocked from accessing the API. When run locally this is not an issue.
+- As of 03/02/2026 there is a deployment issue. Due to a CORS policy data is blocked from accessing the API. When run locally this is not an issue.
+- Screenshots aren't accessible from ReadMe.
 
 ### Future Enhanement
 
