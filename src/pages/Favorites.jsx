@@ -12,13 +12,21 @@ function Favorites({searchQuery}) {
     const [favorites, setFavorites] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
+    const {user} = useAuth();
+
     // load favorites
     useEffect(() => {
         try {
             setLoading(true);
             setError(null);
+            if (!user) {
+            setFavorites([]);
+            return;
+            }
+
+            const allFavorites = JSON.parse(localStorage.getItem('favoriteGamesByUser')) || {};
             const loadFavorites = () => {
-                const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+                const storedFavorites = allFavorites[user.username] || [];
             setFavorites(storedFavorites);
             };
             loadFavorites();
@@ -28,7 +36,7 @@ function Favorites({searchQuery}) {
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [user]);
 
     if (loading) {
         return (

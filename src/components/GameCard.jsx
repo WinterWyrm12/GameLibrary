@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import PlayLater from "../pages/Play-Later";
 import { usePlayLater } from "../contexts/PlayLaterContext";
 import { useCompleted } from "../contexts/CompletedContext";
+import { useAuth } from "../contexts/AuthContext";
+import { useFormAction } from "react-router-dom";
+
 
 
 const GameCard = ({game}) => {
@@ -30,23 +33,36 @@ const GameCard = ({game}) => {
 
     // favorites
     const [isFavorite, setIsFavorite] = useState(false);
+    const {user} = useAuth();
     useEffect(() => {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        const isGameFavorite = favorites.some(fav => fav.id === game.id);
+        if (!user) {
+            setIsFavorite(false);
+            return;
+        }
+        const allFavorites = JSON.parse(localStorage.getItem('favoriteGamesByUser')) || {};
+        const storedFavorites = allFavorites[user.username] || [];
+        const isGameFavorite = storedFavorites.some(fav => fav.id === game.id);
         setIsFavorite(isGameFavorite);
-    }, [game.id]);
+    }, [game.id, user?.username]);
 
     const toggleFavorite = () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        if (!user) {
+            return;
+        }
+
+        const allFavorites = JSON.parse(localStorage.getItem('favoriteGamesByUser')) || {};
+        const storedFavorites = allFavorites[user.username] || [];
+
         if (isFavorite) {
-            const updatedFavorites = favorites.filter(fav => fav.id !== game.id);
-            localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+            const updatedFavorites = storedFavorites.filter(fav => fav.id !== game.id);
+            allFavorites[user.username] = updatedFavorites;
             setIsFavorite(false);
         } else {
-            favorites.push(game);
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            storedFavorites.push(game);
+            allFavorites[user.username] = storedFavorites;
             setIsFavorite(true);
-        };
+        }
+        localStorage.setItem('favoriteGamesByUser', JSON.stringify(allFavorites));
     };
 
     return (

@@ -27,7 +27,7 @@ function Header({onSearch}) {
 
     const handleLogout = () => {
         logout();
-        navigate(from, {replace: true});
+        navigate('/' , {replace: true});
     };
 
     return (
